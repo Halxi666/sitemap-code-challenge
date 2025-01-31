@@ -23,7 +23,7 @@ export const HomeScreen = () => {
         onChangeText={setQuery}
       />
       <Button title="Search" onPress={handleSearch} />
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {loading && <ActivityIndicator size="large" />}
       {error && <Text style={styles.error}>{error}</Text>}
       <FlatList
         data={articles}

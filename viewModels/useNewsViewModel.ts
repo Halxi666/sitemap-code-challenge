@@ -13,13 +13,16 @@ export function useNewsViewModel() {
       setError('Please enter a search term.');
       return;
     }
-
     setLoading(true);
     setError(null);
-    const { articles, error } = await fetchNews(query);
-    setArticles(articles);
-    setError(error);
-    setLoading(false);
+    try {
+      const { articles } = await fetchNews(query);
+      setArticles(articles);
+    } catch (err) {
+      setError('Failed to fetch news.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return { query, setQuery, articles, loading, error, handleSearch };
